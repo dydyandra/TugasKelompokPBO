@@ -7,7 +7,7 @@ public class PhotoFrame extends JFrame {
 	private final JLabel label ;
 	
 	public PhotoFrame(int choice, int size) {
-		super("Raihan 100") ;
+		super("Muhammad Raihan 100") ;
 		setLayout(new FlowLayout()) ;
 		// Set Alamat dan nama file gambar (Untuk foto bisa disesuaikan)
 		Icon pict = new ImageIcon(getClass().getResource("MyPhoto.jpg")) ;
