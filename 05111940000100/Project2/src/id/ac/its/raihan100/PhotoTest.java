@@ -14,6 +14,7 @@ public class PhotoTest {
 				"Picture and Text", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options1, options1[0]) ;
 		
+		// Dialog Option Box untuk memilih ukuran gambar
 		int input2 = JOptionPane.showOptionDialog(null, 
 				"Choose Picture Size", 
 				"Picture and Text", 
@@ -24,6 +25,7 @@ public class PhotoTest {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) ;
 		frame.setSize(350, 250) ; // Ukuran JFrame
 		
+		// Ukuran JFrame
 		if (input2 == 1) 
 			frame.setSize(450, 350) ;
 		else if (input2 == 2) 
