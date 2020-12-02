@@ -1,0 +1,8 @@
+package id.ac.its.dyandra119;
+
+public abstract class Shape {
+	
+	public abstract double getArea();
+	public abstract double getCircumference();
+
+}
