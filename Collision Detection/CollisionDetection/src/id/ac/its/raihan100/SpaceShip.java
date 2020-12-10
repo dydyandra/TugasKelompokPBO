@@ -16,7 +16,7 @@ public class SpaceShip extends Sprite {
 	
 	public void initCraft() {
 		missiles = new ArrayList<> () ;
-		super.loadImage("ship.jpg");
+		super.loadImage("spaceship30.png");
 		super.getImageDimension();
 	}
 	
@@ -30,6 +30,8 @@ public class SpaceShip extends Sprite {
             x = 1 ;
         if (y < 1)
             y = 1 ;
+        if (y > 370)
+        	y = 370 ;
     }
 	
 	public List<Missile> getMissiles() {
@@ -44,20 +46,20 @@ public class SpaceShip extends Sprite {
             fire();
 
         if (key == KeyEvent.VK_LEFT) 
-            dx = -1;
+            dx = -3;
 
         if (key == KeyEvent.VK_RIGHT) 
-            dx = 1;
+            dx = 3;
 
         if (key == KeyEvent.VK_UP) 
-            dy = -1;
+            dy = -3;
 
         if (key == KeyEvent.VK_DOWN)
-            dy = 1;
+            dy = 3;
     }
 
 	public void fire() {
-	    missiles.add(new Missile(x + width, y + height / 2));
+	    missiles.add(new Missile(x + width, y + height / 4));
 	}
 	
 	public void keyReleased(KeyEvent e) {

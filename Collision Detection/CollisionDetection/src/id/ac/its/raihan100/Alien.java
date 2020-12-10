@@ -9,17 +9,21 @@ public class Alien extends Sprite {
 		
 		initAlien() ;
 	}
-
+	
+	public static void setAlienSpeed(int speed) {
+		ALIEN_SPEED = speed;
+	}
+	
 	public void initAlien() {
-		super.loadImage("alien.jpg");
+		super.loadImage("ufo30.png");
 		super.getImageDimension();
 	}
 
 	@Override
 	public void move() {
 		
-		if (x < 0) {
-	        x = BOARD_WIDTH;
+		if (x < -30) {
+	        x = Board.BOARD_WIDTH;
 	    }
 
 	    x -= ALIEN_SPEED;

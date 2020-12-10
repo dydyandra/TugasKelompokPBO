@@ -15,7 +15,7 @@ public class Missile extends Sprite {
 	}
 	
 	public void initMissile() {
-		super.loadImage("missile.jpg");
+		super.loadImage("bullet20.png");
 		super.getImageDimension();
 	}
 	
@@ -23,7 +23,7 @@ public class Missile extends Sprite {
 	public void move() {
 		x += MISSILE_SPEED ;
 		
-		if (x > BOARD_WIDTH)
+		if (x > Board.BOARD_WIDTH)
 			super.setVisible(false) ;
 	}
 }
