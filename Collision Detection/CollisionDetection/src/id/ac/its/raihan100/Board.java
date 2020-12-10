@@ -217,14 +217,16 @@ public class Board extends JPanel implements ActionListener {
 
         repaint();	 // Gambar ulang
     }
-
+	
+	// Cek status In game
     private void inGame() {
 
         if (!ingame) {
             timer.stop();
         }
     }
-
+    
+    // Method Update posisi spaceship
     private void updateShip() {
 
         if (spaceship.isVisible()) {
@@ -232,7 +234,8 @@ public class Board extends JPanel implements ActionListener {
             spaceship.move();
         }
     }
-
+    
+    // Method update posisi missile
     private void updateMissiles() {
 
         List<Missile> ms = spaceship.getMissiles();
@@ -243,14 +246,16 @@ public class Board extends JPanel implements ActionListener {
 
             if (m.isVisible()) {
                 m.move();
-            } else {
+            } else { // Jika tidak visible, hapus
                 ms.remove(i);
             }
         }
     }
-
+    
+    // Method update posisi alien
     private void updateAliens() {
 
+    	// Jika alien habis, game selesai dan menang
         if (aliens.isEmpty()) {
         	this.winStatus = true ;
             ingame = false;
@@ -263,20 +268,23 @@ public class Board extends JPanel implements ActionListener {
             
             if (a.isVisible()) {
                 a.move();
-            } else {
+            } else { // Jika tidak visible, hapus
                 aliens.remove(i);
             }
         }
     }
-
+    
+    // Method untuk cek tabrakan
     public void checkCollisions() {
-
+    	
+    	// Ambil batas persegi panjang gambar spaceship
         Rectangle r3 = spaceship.getBounds();
 
         for (Alien alien : aliens) {
-            
+            // Ambil batas persegi panjang gambar ufo alien
             Rectangle r2 = alien.getBounds();
-
+            
+            // Jika berpotongan (Tabrakan), game selesai, kalah
             if (r3.intersects(r2)) {
                 this.winStatus = false ;
                 spaceship.setVisible(false);
@@ -294,7 +302,7 @@ public class Board extends JPanel implements ActionListener {
             for (Alien alien : aliens) {
 
                 Rectangle r2 = alien.getBounds();
-
+                // Jika alien dan missile berpotongan (tabrakan), keduanya hilang
                 if (r1.intersects(r2)) {
                     
                     m.setVisible(false);
@@ -303,19 +311,19 @@ public class Board extends JPanel implements ActionListener {
             }
         }
     }
-
+    
     private class TAdapter extends KeyAdapter {
 
-        @Override
+        @Override // Method membaca ketika tombol keyboard dilepas
         public void keyReleased(KeyEvent e) {
             spaceship.keyReleased(e);
         }
 
-        @Override
+        @Override // Method membaca key ketika tombol keyboard ditekan
         public void keyPressed(KeyEvent e) {
-        	if (Board.ingame)
+        	if (Board.ingame) // jika masih in game, ambil input keyboard spaceship
         		spaceship.keyPressed(e);
-        	else 
+        	else // Jika game sudah selesai, tanyakan ingin mengulang game atau tidak 
         		lastEvent(e);
         }
     }
