@@ -12,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.Random;
@@ -32,14 +33,12 @@ public class Board extends JPanel implements ActionListener {
     
     private int[][] pos ;
     
-	public Board(int countAlien) {
-	
-		this.countAlien = countAlien ;
-		this.pos = randomizeAlien() ;
+	public Board() {
 		initBoard() ;
 	}
 	
 	public void initBoard() {
+		this.chooseDifficulty();
 		
 		addKeyListener(new TAdapter()) ;
 		setFocusable(true);
@@ -54,6 +53,34 @@ public class Board extends JPanel implements ActionListener {
 
         timer = new Timer(DELAY, this);
         timer.start();
+	}
+	
+	public void chooseDifficulty() {
+		int aliens = 0 ;
+		String[] options1 = {"Easy", "Medium", "Hard"} ;
+		
+		int input1 = JOptionPane.showOptionDialog(null, 
+				"Choose Difficulty", 
+				"'Space' Invader v.0", 
+				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options1, options1[0]) ;
+		
+		if (input1 == 0) {
+			Alien.setAlienSpeed(1) ;
+			Missile.setMissileSpeed(4) ;
+			aliens = 20 ;
+		}
+		else if (input1 == 1) {
+			Alien.setAlienSpeed(3) ;
+			Missile.setMissileSpeed(4) ;
+			aliens = 25 ;
+		}
+		else if (input1 == 2) {
+			Alien.setAlienSpeed(5) ;
+			Missile.setMissileSpeed(3) ;
+			aliens = 30 ;
+		}
+		this.countAlien = aliens;
+		this.pos = randomizeAlien() ;
 	}
 	
 	public int[][] randomizeAlien() {
@@ -146,20 +173,14 @@ public class Board extends JPanel implements ActionListener {
                 BOARD_HEIGHT / 2 + 22);
     }
 	
-	public static void keyPressed(KeyEvent e) {
+	public void lastEvent(KeyEvent e) {
 		int key = e.getKeyCode() ;
 		
-		if (key == KeyEvent.VK_SPACE) {
-			closePanel() ;
-			CollisionEx.main(null) ;
-		}
+		if (key == KeyEvent.VK_SPACE)
+			initBoard() ;
 		
 		if (key == KeyEvent.VK_ESCAPE)
 			System.exit(0) ;
-	}
-	
-	public static void closePanel() {
-		this.setVisible(false) ;
 	}
 	
 	@Override
@@ -274,7 +295,7 @@ public class Board extends JPanel implements ActionListener {
         	if (Board.ingame)
         		spaceship.keyPressed(e);
         	else 
-        		Board.keyPressed(e);
+        		lastEvent(e);
         }
     }
 	
