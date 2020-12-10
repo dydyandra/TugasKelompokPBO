@@ -19,51 +19,62 @@ import java.util.Random;
 
 public class Board extends JPanel implements ActionListener {
 	
-	private Timer timer;
-    private SpaceShip spaceship;
-    private List<Alien> aliens;
-    protected static boolean ingame;
-    private final int ICRAFT_X = 40;
-    private final int ICRAFT_Y = 80;
-    protected static int BOARD_WIDTH = 500 ;
-    protected static int BOARD_HEIGHT = 400 ;
-    private final int DELAY = 15;
-    private int countAlien ;
-    private boolean winStatus ;
+	private Timer timer;	// Objek timer, penghitung waktu
+    private SpaceShip spaceship;	// Objek spaceship yang dipakai
+    private List<Alien> aliens;		// List alien
+    protected static boolean ingame;// Status dalam game / tidak
+    private final int ICRAFT_X = 40;// Posisi x awal spaceship
+    private final int ICRAFT_Y = 80;// Posisi y awal spaceship
+    protected static int BOARD_WIDTH = 500 ; // Lebar window
+    protected static int BOARD_HEIGHT = 400 ;// Tinggi window
+    private final int DELAY = 15;	// Waktu jeda antara gerakan
+    private int countAlien ;		// Jumlah alien
+    private boolean winStatus ;		// Status menang / kalah
     
-    private int[][] pos ;
+    private int[][] pos ;			// Array posisi alien yang ada
     
+    // Constructor
 	public Board() {
 		initBoard() ;
 	}
 	
+	// Inisialisasi Board Window
 	public void initBoard() {
+		// Memilih tingkat kesulitan game
 		this.chooseDifficulty();
 		
+		// Key listener untuk mendeteksi input keyboard
 		addKeyListener(new TAdapter()) ;
 		setFocusable(true);
         setBackground(Color.BLACK);
         ingame = true;
-
+        
+        // Size window
         setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
-
+        
+        // membuat objek spaceship
         spaceship = new SpaceShip(ICRAFT_X, ICRAFT_Y);
 
+        // inisialisasi alien (Membuat objek alien)
         initAliens();
-
+        
+        // Membuat objek timer, penghitung waktu
         timer = new Timer(DELAY, this);
         timer.start();
 	}
 	
 	public void chooseDifficulty() {
 		int aliens = 0 ;
+		// Opsi tingkat kesulitan
 		String[] options1 = {"Easy", "Medium", "Hard"} ;
 		
+		// JOptionPane untuk memilih kesuiltan
 		int input1 = JOptionPane.showOptionDialog(null, 
 				"Choose Difficulty", 
 				"'Space' Invader v.0", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options1, options1[0]) ;
 		
+		// Seleksi pilihan untuk masing - masing kesulitan dibedakan kecepatan alien dan jumlahnya
 		if (input1 == 0) {
 			Alien.setAlienSpeed(1) ;
 			Missile.setMissileSpeed(4) ;
@@ -76,15 +87,21 @@ public class Board extends JPanel implements ActionListener {
 		}
 		else if (input1 == 2) {
 			Alien.setAlienSpeed(5) ;
-			Missile.setMissileSpeed(3) ;
+			Missile.setMissileSpeed(4) ;
 			aliens = 30 ;
 		}
+		else // Jika tidak ada input exit saja
+			System.exit(0) ;
+		// Simpan jumlah alien
 		this.countAlien = aliens;
+		
+		// buat lokasi alien secara random
 		this.pos = randomizeAlien() ;
 	}
 	
+	// Method randomisasi posisi alien
 	public int[][] randomizeAlien() {
-		int x, y ;
+		int x, y ; // Koordinat
 		int [][] aliens = new int[this.countAlien][2] ;
 		Random rand = new Random() ;
 		
@@ -99,61 +116,63 @@ public class Board extends JPanel implements ActionListener {
 		return aliens ;
 	}
 	
+	// Inisialisasi alien dengan membuat objek alien berdasarkan posisinya
 	public void initAliens() {
         
         aliens = new ArrayList<>();
-
+        
         for (int[] p : pos) {
             aliens.add(new Alien(p[0], p[1]));
         }
     }
     
-	@Override
+	@Override // Menggambar
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        
+        // Jika masih dalam game
         if (ingame) {
-
+        	// Gambar objek
             drawObjects(g);
 
-        } else {
-
+        } else { // Jika nggak
+        	// Gambar tulisan bahwa game tealh selesai
             drawGameOver(g);
         }
 
         Toolkit.getDefaultToolkit().sync();
     }
-
+	
 	private void drawObjects(Graphics g) {
-
+		// Jika spaceship berstatus masih ada
         if (spaceship.isVisible()) {
             g.drawImage(spaceship.getImage(), spaceship.getX(), spaceship.getY(),
                     this);
         }
-
+        
         List<Missile> ms = spaceship.getMissiles();
-
+        // Menggambar missile
         for (Missile missile : ms) {
             if (missile.isVisible()) {
                 g.drawImage(missile.getImage(), missile.getX(), 
                         missile.getY(), this);
             }
         }
-
+        // MEnggambar alien
         for (Alien alien : aliens) {
             if (alien.isVisible()) {
                 g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
             }
         }
-
+        // menulis status jumlah alien
         g.setColor(Color.WHITE);
         g.drawString("Aliens left: " + aliens.size(), 5, 15);
     }
 	
 	private void drawGameOver(Graphics g) {
-
+		
         String msg = "Game Over, You Lose!";
-        if (this.winStatus) 
+        if (this.winStatus) // Jika status menang true
         	msg = "Congratulation, You Win!" ;
         Font big = new Font("Comic Sans MS", Font.BOLD, 18);
         FontMetrics fm = getFontMetrics(big);
@@ -163,6 +182,7 @@ public class Board extends JPanel implements ActionListener {
         g.drawString(msg, (BOARD_WIDTH - fm.stringWidth(msg)) / 2,
                 BOARD_HEIGHT / 2);
         
+        // Menulis panduan jika ingin melanjutkan game
         msg = "Press 'Space' to Play Again" ;
         Font small = new Font("Comic Sans MS", Font.ITALIC, 14);
         fm = getFontMetrics(small);
@@ -173,28 +193,29 @@ public class Board extends JPanel implements ActionListener {
                 BOARD_HEIGHT / 2 + 22);
     }
 	
+	// Method untuk menentukan apakah ingin mengulangi game
 	public void lastEvent(KeyEvent e) {
 		int key = e.getKeyCode() ;
 		
-		if (key == KeyEvent.VK_SPACE)
+		if (key == KeyEvent.VK_SPACE) // spasi untuk mengulang game
 			initBoard() ;
 		
-		if (key == KeyEvent.VK_ESCAPE)
+		if (key == KeyEvent.VK_ESCAPE) // Escape untuk menutup aplikasi
 			System.exit(0) ;
 	}
 	
-	@Override
+	@Override // Aksi - aksi yang dilakukan dalam game
     public void actionPerformed(ActionEvent e) {
 
-        inGame();
+        inGame(); // cek status dalam game, jika tidak, stop timer nya
 
-        updateShip();
-        updateMissiles();
-        updateAliens();
+        updateShip();	// Mengupdate posisi spaceship
+        updateMissiles(); // Mengupdate posisi missile
+        updateAliens();	// MEngupdate posisi alien
 
-        checkCollisions();
+        checkCollisions();	// Cek apakah terjadi tabrakan
 
-        repaint();
+        repaint();	 // Gambar ulang
     }
 
     private void inGame() {
