@@ -13,12 +13,12 @@ akan diinisialisasi saat objek *Board* dibuat, yang kemudian akan dipakai saat g
 ### Sprite
 Pada class ini, terdapat beberapa method yang akan digunakan beberapa kali di dalam *class* lainnya. Method-method dalam 
 Sprite antara lain 
-* constructor yang akan menginisialisasi koordinat x, y, dan variabel visible
-* *abstract method* untuk menggerakkan objek. Method ini abstrak dikarenakan implementasi method di setiap objek berbeda-beda. 
-* method-method untuk mendapatkan gambar, dan dimensi (*height, width*) gambar tersebut
-* method untuk mengatur visibilitas objek-objek bergerak
-* getter dan setter untuk variabel-variabel dalam class
-* method *bounding*:
+* Constructor yang akan menginisialisasi koordinat x, y, dan variabel visible
+* *Abstract method* untuk menggerakkan objek. Method ini abstrak dikarenakan implementasi method di setiap objek berbeda-beda. 
+* Method-method untuk mendapatkan gambar, dan dimensi (*height, width*) gambar tersebut
+* Method untuk mengatur visibilitas objek-objek bergerak
+* Getter dan setter untuk variabel-variabel dalam class
+* Method *bounding*:
   ```getBounds()
   public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);
@@ -28,9 +28,9 @@ Sprite antara lain
 
 ### Alien
 Method-method yang terdapat dalam class: 
-* constructor untuk menginisialisasi koordinat dan gambar Alien
-* setter untuk mengeset kecepatan bergeraknya objek Alien
-* method agar objek dapat bergerak
+* Constructor untuk menginisialisasi koordinat dan gambar Alien
+* Setter untuk mengeset kecepatan bergeraknya objek Alien
+* Method agar objek dapat bergerak
   ```move
   @Override // Method untuk menggeser posisi alien
 	  public void move() {
@@ -45,26 +45,26 @@ Method-method yang terdapat dalam class:
   Dalam method ini, karena Alien bergerak menuju kiri (mundur) maka untuk menggeser posisi koordinat objek akan terus dikurangi dengan kecepatan objek. 
 ### Missile  
 Method-method dalam class: 
-* constructor untuk menginisialisasi objek
-* setter untuk kecepatan objek missile
-* method agar objek dapat bergerak
- ```move
- @Override // Method untuk menggeser posisi missile
+* Constructor untuk menginisialisasi objek
+* Setter untuk kecepatan objek missile
+* Method agar objek dapat bergerak
+  ```move
+  @Override // Method untuk menggeser posisi missile
 	 public void move() {
 		 x += MISSILE_SPEED ;
 		
 		 if (x > Board.BOARD_WIDTH) // Jika menyentuh batas kanan, missile hancur
 			 super.setVisible(false) ;
 	 }
- ```
- Karena Missile bergerak ke kanan, maka untuk menggeser posisi Missile menggunakan koordinat objek yang kemudian ditambah dengan kecepatan objek Missile. Apabila melebihi lebar board, Missile akan menghilang. 
+  ```
+  Karena Missile bergerak ke kanan, maka untuk menggeser posisi Missile menggunakan koordinat objek yang kemudian ditambah dengan kecepatan objek Missile. Apabila melebihi lebar board, Missile akan menghilang. 
  
 ### Spaceship
 Method-method yang terdapat dalam class: 
-* constructor yang akan menginisialisasi objek
-* method untuk inisialisasi Spaceship. Selain terdapat gambar spaceship, objek Missile juga dibuat list (dikarenakan Missile juga berjalan bersama Spaceship)
-* method untuk mendapatkan Missile, yang akan dipanggil oleh class Board. 
-* method agar objek dapat bergerak
+* Constructor yang akan menginisialisasi objek
+* Method untuk inisialisasi Spaceship. Selain terdapat gambar spaceship, objek Missile juga dibuat list (dikarenakan Missile juga berjalan bersama Spaceship)
+* Method untuk mendapatkan Missile, yang akan dipanggil oleh class Board. 
+* Method agar objek dapat bergerak
   ``` move
   @Override // Method move untuk pergerakan objek
 	public void move() {
@@ -105,15 +105,15 @@ Method-method yang terdapat dalam class:
     }
   
   ```
-* method untuk megembalikan status perpindahan saat key dilepas (delta x dan y diset kembali menjadi 0 sesuai dengan key yang telah dilepas)
-* method untuk menembakkan Missile (sekaligus membuat objek Missile dan menambahkan ke dalam list Missile)
+* Method untuk megembalikan status perpindahan saat key dilepas (delta x dan y diset kembali menjadi 0 sesuai dengan key yang telah dilepas)
+* Method untuk menembakkan Missile (sekaligus membuat objek Missile dan menambahkan ke dalam list Missile)
   
 ### Board
 Method-method dalam class: 
-* constructoryang menginisialisasi *window* Board dari method lain
-* method yang akan dipanggil di constructor
+* Constructor yang menginisialisasi *window* Board dari method lain
+* Method yang akan dipanggil di constructor
   Dalam method ini akan memanggil method chooseDifficulty, yang akan mengeset kecepatan dan jumlah dari objek Alien dan Missile. Selain itu, method juga memanggil method untuk medeteksi input keyboard, mengeset elemen-elemen dari window seperti warna dan ukuran, membuat objek Spaceship, menginisialisasi objek Alien, dan membuat objek Timer. 
-* method untuk mengeset elemen dari objek Alien dan Missile sesuai dengan kesulitan yang dipilih. 
+* Method untuk mengeset elemen dari objek Alien dan Missile sesuai dengan kesulitan yang dipilih. 
   ``` choose
   public void chooseDifficulty() {
 		  int aliens = 0 ;
@@ -152,7 +152,7 @@ Method-method dalam class:
 	  }
   ```
   Method ini memanfaatkan JOption untuk menampilkan pilihan tingkat kesulitan. 
-* method untuk men-*generate* posisi Alien. Method ini menggunakan array 2D dan looping untuk mendapatkan koordinat x, y random untuk membuat objek Alien.
+* Method untuk men-*generate* posisi Alien. Method ini menggunakan array 2D dan looping untuk mendapatkan koordinat x, y random untuk membuat objek Alien.
   ```random
   public int[][] randomizeAlien() {
 		int x, y ; // Koordinat
@@ -171,8 +171,8 @@ Method-method dalam class:
 	}
   ```
   
-* method-method untuk menggambar GUI objek Spaceship, Missile, Alien  dan menulis status jumlah Alien, apabila game masih berjalan. 
-* method untuk menggambar GUI saat permainan selesai. Method ini akan menggambar tulisan menang/kalah 
+* Method-method untuk menggambar GUI objek Spaceship, Missile, Alien  dan menulis status jumlah Alien, apabila game masih berjalan. 
+* Method untuk menggambar GUI saat permainan selesai. Method ini akan menggambar tulisan menang/kalah 
 * Method untuk menentukan apakah ingin mengulang game. 
   ``` ulang
   public void lastEvent(KeyEvent e) {
@@ -194,13 +194,13 @@ Method-method dalam class:
 * Method untuk memperbarui posisi Alien. Objek akan dicek apakah masih ada atau tidak untuk menentukan selesainya permainan. Selain itu, method juga menggunakan cara looping untuk memanggil method move atau remove.
 * method untuk mengecek apakah objek bertabrakan atau tidak. Objek dicek dengan melihat apakah bentuk Rectangle objek berpotongan dengan bentuk Rectangle objek lainnya. 
   Apabila objek Alien dan Spaceship bertabrakan, artinya game telah selesai dan kalah. Apabila Alien dan Missile bertabrakan, objek keduanya hilang. 
-* terdapat class baru dalam class Board, yang akan membaca keyboard apabila dilepas ataupun ditekan. 
+* Terdapat class baru dalam class Board, yang akan membaca keyboard apabila dilepas ataupun ditekan. 
 
 ### CollisionEx
 Method-method dalam class: 
-* constructor yang akan memanggil inisialisasi UI
-* method untuk menginisialisasi UI, dimana akan membuat objek Board baru. 
-* class **main** yang akan membuat event, dimana akan menginisialisasi permainan. 
+* Constructor yang akan memanggil inisialisasi UI
+* Method untuk menginisialisasi UI, dimana akan membuat objek Board baru. 
+* Class **main** yang akan membuat event, dimana akan menginisialisasi permainan. 
 
 ## Class Diagram Collision Detection (Space Invader v.0)
 
