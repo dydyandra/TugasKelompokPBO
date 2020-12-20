@@ -188,8 +188,11 @@ Adapun diubahnya beberapa method seperti:
   ![classdiagram](https://github.com/dydyandra/TugasKelompokPBO/blob/master/Collision%20Detection%20with%20Mouse/doc/CollisionDetectionWithMouse.jpg)
   
   ## Jalan Program Collision Detection with Mouse (Space Invader v.1)
+  [Link menuju video](https://www.youtube.com/watch?v=SLq--q9hsd4&feature=youtu.be)
   
+     [![https://www.youtube.com/watch?v=SLq--q9hsd4&feature=youtu.be](http://img.youtube.com/vi/SLq--q9hsd4/0.jpg)](http://www.youtube.com/watch?v=SLq--q9hsd4 "Collision Detection with Mouse (Space Invader v.1)")
   
+
   
   
 
