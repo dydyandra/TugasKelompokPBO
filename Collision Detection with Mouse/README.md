@@ -29,20 +29,20 @@ Adapun diubahnya beberapa method seperti:
   // (B) Key listener untuk mendeteksi input keyboard
   if (usedKeyListener != null)
 			removeKeyListener(usedKeyListener) ;
-		usedKeyListener = new TAdapter();
-		addKeyListener(usedKeyListener);
-		setFocusable(true);
-        setBackground(Color.BLACK);
-        ingame = true;
-        pauseStatus = false ; // (B) Inisiasi pauseStatus false
+  usedKeyListener = new TAdapter();
+  addKeyListener(usedKeyListener);
+  setFocusable(true);
+  setBackground(Color.BLACK);
+  ingame = true;
+  pauseStatus = false ; // (B) Inisiasi pauseStatus false
 	
    // (B) Mouse Handler 
     MouseHandler handler = new MouseHandler();
-		this.addMouseListener(handler);
-		this.addMouseMotionListener(handler);
+    this.addMouseListener(handler);
+    this.addMouseMotionListener(handler);
         
-		// (B) Hilangkan Cursor Saat In-Game
-		this.hideCursor();
+   // (B) Hilangkan Cursor Saat In-Game
+    this.hideCursor();
   ```
   Perubahan yang terjadi adalah dimodifikasinya KeyListener untuk mendeteksi input bagi menggunakan fitur *Pause* dan *Continue*. Selain itu dibuat inisiasi status Pause untuk mendeteksi apakah game sedang di-pause atau tidak. <br>
   
@@ -52,12 +52,12 @@ Adapun diubahnya beberapa method seperti:
 
 * Method ``hideCursor``untuk menghilangkan cursor saat permainan berlangsung.   
   ```hide
-  	public void hideCursor() {
-		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
-		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
-		    cursorImg, new Point(0, 0), "blank cursor");
-		this.setCursor(blankCursor);
-	}
+  public void hideCursor() {
+	BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+	Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+		cursorImg, new Point(0, 0), "blank cursor");
+	this.setCursor(blankCursor);
+  }
   ```
   Dengan menggunakan method ini, akan dibentuk suatu blank cursor sehingga pemain tidak akan terganggu dengan adanya cursor bawaan dari mouse ketika bermain. Untuk melakukan ini memanfaatkan method ``BufferedImage``. 
 
