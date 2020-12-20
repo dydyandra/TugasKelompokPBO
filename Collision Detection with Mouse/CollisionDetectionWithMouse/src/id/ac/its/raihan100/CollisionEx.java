@@ -19,7 +19,7 @@ public class CollisionEx extends JFrame {
 		pack() ;
 		
 		// Judul Game
-		setTitle("'Space' Invader v.0");
+		setTitle("'Space' Invader v.1");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

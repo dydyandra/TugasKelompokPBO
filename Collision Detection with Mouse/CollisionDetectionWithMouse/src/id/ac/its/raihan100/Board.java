@@ -24,7 +24,7 @@ import javax.swing.Timer;
 
 import java.util.Random;
 
-// (B) Line 60, 65, 83, 342, 350, 351, 357
+// (B) Line 43, 45, 57, 65, 67, 72, 90, 166, 233, 254, 266, 272, 393, 405
 // (B) Ada tambahan Inner Class MouseHandler
 
 public class Board extends JPanel implements ActionListener {
@@ -39,8 +39,10 @@ public class Board extends JPanel implements ActionListener {
     protected static int BOARD_HEIGHT = 400 ;// Tinggi window
     private final int DELAY = 15;	// Waktu jeda antara gerakan
     private int countAlien ;		// Jumlah alien
-    private boolean winStatus ;		// Status menang / kalah    
+    private boolean winStatus ;		// Status menang / kalah  
+    private boolean pauseStatus ;	// (B) Status Game Di Pause
     private int[][] pos ;			// Array posisi alien yang ada
+    private TAdapter usedKeyListener ; // (B) KeyListener Yang Digunakan Sekarang
     
     // Constructor
 	public Board() {
@@ -52,11 +54,15 @@ public class Board extends JPanel implements ActionListener {
 		// Memilih tingkat kesulitan game
 		this.chooseDifficulty();
 		
-		// Key listener untuk mendeteksi input keyboard
-		addKeyListener(new TAdapter()) ;
+		// (B) Key listener untuk mendeteksi input keyboard
+		if (usedKeyListener != null)
+			removeKeyListener(usedKeyListener) ;
+		usedKeyListener = new TAdapter();
+		addKeyListener(usedKeyListener);
 		setFocusable(true);
         setBackground(Color.BLACK);
         ingame = true;
+        pauseStatus = false ; // (B) Inisiasi pauseStatus false
         
         // (B) Mouse Handler 
         MouseHandler handler = new MouseHandler();
@@ -98,7 +104,7 @@ public class Board extends JPanel implements ActionListener {
 		// JOptionPane untuk memilih kesuiltan
 		int input1 = JOptionPane.showOptionDialog(null, 
 				"Choose Difficulty", 
-				"'Space' Invader v.0", 
+				"'Space' Invader v.1", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options1, options1[0]) ;
 		
 		// Seleksi pilihan untuk masing - masing kesulitan dibedakan kecepatan alien dan jumlahnya
@@ -157,8 +163,12 @@ public class Board extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        // Jika masih dalam game
-        if (ingame) {
+        if (pauseStatus) { // (B) Jika game sedang di pause
+        	drawPause(g); // Gambar tulisan game dipause
+        	this.setCursor(Cursor.getDefaultCursor()); // Munculkan cursor default saat game di-pause
+        	timer.stop(); // Hentikan Menggambar
+        }
+        else if (ingame) { // Jika masih dalam game
         	// Gambar objek
             drawObjects(g);
 
@@ -220,15 +230,55 @@ public class Board extends JPanel implements ActionListener {
                 BOARD_HEIGHT / 2 + 22);
     }
 	
-	// Method untuk menentukan apakah ingin mengulangi game
-	public void lastEvent(KeyEvent e) {
+	// (B) Method untuk menggambar pause
+	private void drawPause(Graphics g) {
+		String msg = "Game Paused";
+		Font big = new Font("Comic Sans MS", Font.BOLD, 18);
+        FontMetrics fm = getFontMetrics(big);
+        
+        g.setColor(Color.white);
+        g.setFont(big);
+        g.drawString(msg, (BOARD_WIDTH - fm.stringWidth(msg)) / 2,
+                BOARD_HEIGHT / 2);
+        
+        msg = "Press 'Esc' to Continue" ;
+        Font small = new Font("Comic Sans MS", Font.ITALIC, 14);
+        fm = getFontMetrics(small);
+        
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(msg, (BOARD_WIDTH - fm.stringWidth(msg)) / 2,
+                BOARD_HEIGHT / 2 + 22);
+	}
+	
+	// (B) Method untuk menentukan apakah ingin mengulangi game
+	public void someEvent(KeyEvent e) {
 		int key = e.getKeyCode() ;
 		
-		if (key == KeyEvent.VK_SPACE) // spasi untuk mengulang game
-			initBoard() ;
-		
-		if (key == KeyEvent.VK_ESCAPE) // Escape untuk menutup aplikasi
-			System.exit(0) ;
+		if (!ingame) {
+			if (key == KeyEvent.VK_SPACE) // spasi untuk mengulang game
+				initBoard() ;
+			
+			if (key == KeyEvent.VK_ESCAPE) // Escape untuk menutup aplikasi
+				System.exit(0) ;			
+		}
+		else {
+			if (key == KeyEvent.VK_ESCAPE) { // (B) Escape untuk pause/continue game
+				pause() ;
+			}
+		}
+	}
+	
+	// (B) Method untuk nge-pause game
+	public void pause() {
+		if (!timer.isRunning()) {
+			pauseStatus = false ;
+			hideCursor() ; // Hide laagi cursornya ketika game berjalan
+			timer.start();
+		}
+		else {
+			pauseStatus = true ;
+		}
 	}
 	
 	@Override // Aksi - aksi yang dilakukan dalam game
@@ -348,10 +398,7 @@ public class Board extends JPanel implements ActionListener {
 
         @Override // Method membaca key ketika tombol keyboard ditekan
         public void keyPressed(KeyEvent e) {
-        	// (B) Statement saat ingame true dihapus karena
-        	// (B) Tidak digunakan 
-        	if (Board.ingame == false) // jika masih in game, ambil input keyboard spaceship
-        		lastEvent(e);
+        	someEvent(e);
         }
     }
     
