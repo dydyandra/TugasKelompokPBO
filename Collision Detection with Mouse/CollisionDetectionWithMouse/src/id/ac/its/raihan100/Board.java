@@ -56,7 +56,7 @@ public class Board extends JPanel implements ActionListener {
 		
 		// (B) Key listener untuk mendeteksi input keyboard
 		if (usedKeyListener != null)
-			removeKeyListener(usedKeyListener) ;
+			removeKeyListener(usedKeyListener);
 		usedKeyListener = new TAdapter();
 		addKeyListener(usedKeyListener);
 		setFocusable(true);
