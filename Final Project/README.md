@@ -1,9 +1,10 @@
 # EXPENSE MANAGER 
   Jenis aplikasi: Aplikasi desktop 
+  Fungsi aplikasi: Untuk mengatur keuangan pengguna 
  
 ## Fitur-fitur: 
 * Menyimpan detail pengeluaran dan pemasukan beserta file (struk) transaksi
-* Kalander pengeluaran dan pemasukan
+* Kalender pengeluaran dan pemasukan
 * Timeline per tanggal pengeluaran dan pemasukan
   - Filter kategori
   - Filter tanggal 
@@ -11,6 +12,9 @@
   (Seperti timeline, ditambah dengan gambar dan deskripsi)
 * Sisa uang, total pengeluaran
 * *Remove* transaksi
+
+## Class Diagram 
+
 
 
 ## Referensi
