@@ -1,5 +1,6 @@
 # EXPENSE MANAGER 
   Jenis aplikasi: Aplikasi desktop 
+  
   Fungsi aplikasi: Untuk mengatur keuangan pengguna 
  
 ## Fitur-fitur: 
