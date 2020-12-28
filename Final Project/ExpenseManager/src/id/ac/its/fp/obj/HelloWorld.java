@@ -11,7 +11,7 @@ public class HelloWorld extends Application{
     btn.setOnAction((e) -> System.out.println("Hello World !"));
     StackPane root = new StackPane();
     root.getChildren().add(btn);
-    Scene scene = new Scene(root, 300, 300);
+    Scene scene = new Scene(root, 500, 600);
     primaryStage.setTitle("My First Java FX App");
     primaryStage.setScene(scene);
     primaryStage.show();
