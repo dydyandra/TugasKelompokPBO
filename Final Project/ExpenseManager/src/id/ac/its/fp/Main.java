@@ -19,6 +19,7 @@ public class Main {
 		System.out.println("1. New Transaction");
 		System.out.println("2. Transaction Calendar");
 		System.out.println("3. Current Day Transaction Total");
+		System.out.println("4. Filter by Category");
 		System.out.printf(">> ");
 		
 		askChoice() ;

@@ -73,8 +73,9 @@ public class ReadTransaction {
 				Transaction transaction = (Transaction) input.readObject() ;
 				
 				LocalDateTime now = LocalDateTime.now();
-				System.out.println("Tipe "+transaction.getType() + transaction.getValue());
-				if (now.toLocalDate() == transaction.getLocalTime().toLocalDate()) {
+				
+				if (now.toLocalDate().toString().compareTo(
+						transaction.getLocalTime().toLocalDate().toString()) == 0) {
 					if (transaction.getType().compareTo("Income") == 0)
 						income += transaction.getValue() ;
 					else if (transaction.getType().compareTo("Outcome") == 0)
