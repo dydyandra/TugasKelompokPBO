@@ -15,7 +15,7 @@
 * *Remove* transaksi
 
 ## Class Diagram 
-
+![class diagram](https://github.com/dydyandra/TugasKelompokPBO/blob/master/Final%20Project/doc/Class_Diagram_FP.jpg)
 
 
 ## Referensi
