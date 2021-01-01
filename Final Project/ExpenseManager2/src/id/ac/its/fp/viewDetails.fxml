@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="detailDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="900.0" prefWidth="585.0">
+         <children>
+            <SplitPane dividerPositions="0.35" layoutX="104.0" layoutY="14.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <SplitPane dividerPositions="0.2" layoutX="109.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane fx:id="dateDetail" minHeight="0.0" minWidth="0.0" prefHeight="66.0" prefWidth="581.0">
+                                 <children>
+                                    <TextArea fx:id="dateText" layoutX="14.0" layoutY="-63.0" prefHeight="10.0" prefWidth="200.0" promptText="Date" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="Arial Black" size="25.0" />
+                                       </font>
+                                    </TextArea>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane fx:id="elementDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <GridPane layoutX="236.0" layoutY="14.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label fx:id="descLabel" text="Description">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane layoutX="14.0" layoutY="14.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label fx:id="typeLabel" text="Type">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="categoryLabel" text="Category" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea prefHeight="100.0" prefWidth="142.0" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="20.0" top="20.0" />
+                                             </GridPane.margin>
+                                          </TextArea>
+                                          <TextArea prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                                          <Label fx:id="valueLabel" text="Value" GridPane.rowIndex="6">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane fx:id="imageDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="500.0" fitWidth="400.0" layoutX="54.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                           <image>
+                              <Image url="@../../../../../doc/ReceiptSwiss.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="14.0" text="Image Display">
+                           <font>
+                              <Font name="Arial Black" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
