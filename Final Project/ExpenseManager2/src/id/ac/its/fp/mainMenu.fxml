@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.ac.ita.fp.FXMLMainMenuController">
    <children>
       <SplitPane dividerPositions="0.21084337349397592" layoutY="1.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -29,9 +29,9 @@
                   </Label>
                   <ButtonBar layoutX="-3.0" layoutY="60.0" AnchorPane.leftAnchor="0.0">
                     <buttons>
-                      <Button mnemonicParsing="false" text="HOME" />
-                        <Button mnemonicParsing="false" text="INSERT" />
-                        <Button mnemonicParsing="false" text="CALENDAR" />
+                      <Button fx:id="homeButton" mnemonicParsing="false" text="HOME" />
+                        <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertData" text="INSERT" />
+                        <Button fx:id="chartButton" mnemonicParsing="false" text="CHART" />
                     </buttons>
                   </ButtonBar>
                </children>
