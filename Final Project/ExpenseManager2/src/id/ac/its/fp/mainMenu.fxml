@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
@@ -9,7 +10,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -67,46 +67,33 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <SplitPane dividerPositions="0.4" prefHeight="160.0" prefWidth="200.0" GridPane.rowIndex="1">
-                                      <items>
-                                        <AnchorPane fx:id="dailyIncome" minHeight="0.0" minWidth="0.0" prefHeight="33.0" prefWidth="108.0">
-                                             <children>
-                                                <Label layoutX="48.0" layoutY="5.0" text="Income:" AnchorPane.rightAnchor="0.0">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="12.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <TextArea fx:id="disDailyIncome" layoutY="-9.0" prefHeight="1.0" prefWidth="156.0" promptText="income" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                      </items>
-                                    </SplitPane>
-                                    <SplitPane dividerPositions="0.4" layoutX="10.0" layoutY="38.0" prefHeight="160.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <items>
-                                          <AnchorPane fx:id="dailyExpense" minHeight="0.0" minWidth="0.0" prefHeight="33.0" prefWidth="108.0">
-                                             <children>
-                                                <Label layoutX="48.0" layoutY="5.0" text="Expense:" AnchorPane.rightAnchor="0.0">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="12.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <TextArea fx:id="disDailyExpense" layoutY="-9.0" prefHeight="20.0" prefWidth="100.0" promptText="expense" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </items>
-                                    </SplitPane>
                                     <Label text="Daily ">
                                        <font>
                                           <Font name="Arial Black" size="15.0" />
                                        </font>
+                                    </Label>
+                                    <Label text="Income:" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Outcome:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalIncome" prefHeight="18.0" prefWidth="184.0" text="income" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="70.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Label fx:id="totalOutcome" prefHeight="18.0" prefWidth="184.0" text="outcome" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <GridPane.margin>
+                                          <Insets left="70.0" />
+                                       </GridPane.margin>
                                     </Label>
                                  </children>
                               </GridPane>
