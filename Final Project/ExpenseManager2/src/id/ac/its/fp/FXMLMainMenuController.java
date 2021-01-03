@@ -57,7 +57,26 @@ public class FXMLMainMenuController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+
+		homeButton.setDisable(true) ;
+		
+		typeFilter.getItems().add("Filter") ;
+		typeFilter.getItems().add("Food") ;
+		typeFilter.getItems().add("Electronic") ;
+		typeFilter.getItems().add("Transportation") ;
+		typeFilter.getItems().add("Outfit") ;
+		typeFilter.getItems().add("Education") ;
+		typeFilter.getItems().add("Other") ;
+		typeFilter.getSelectionModel().selectFirst() ;
+		
+		typeFilter.setOnAction((ActionEvent e) -> {
+			filterTransaction() ;
+		});
+		
+		
+	}
+	
+	public void filterTransaction() {
 		
 	}
 
