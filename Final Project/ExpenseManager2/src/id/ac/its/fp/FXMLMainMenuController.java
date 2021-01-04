@@ -2,6 +2,8 @@ package id.ac.its.fp;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -11,19 +13,40 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-
+import javafx.util.Callback;
 import id.ac.its.fp.obj.*;
+import id.ac.its.fp.utility.LoadTransaction;
 
 public class FXMLMainMenuController implements Initializable {
 	
 	@FXML
+	private AnchorPane titlecontainer ;
+	
+	@FXML
 	private Label titleLabel ;
+	
+	@FXML
+	private AnchorPane mainDisplay ;
+	
+	@FXML
+	private SplitPane mainContainer ;
+	
+	@FXML
+	private AnchorPane tableAddFilter ;
+	
+	@FXML
+	private AnchorPane dailyDisplay ;
 	
 	@FXML
 	private Button homeButton ;
@@ -43,16 +66,43 @@ public class FXMLMainMenuController implements Initializable {
 	@FXML
 	private TableView<Transaction> displayTable ;
 	
+	public List<Transaction> transactionList ;
 	
+	@FXML 
+	private TableColumn <Transaction, String> type ;
 	
 	@FXML
-	private void insertData(ActionEvent e) throws IOException {
-		Parent insertDataPage = FXMLLoader.load(getClass().getResource("insertData.fxml")) ;
-		Scene insertDataScene = new Scene(insertDataPage) ;
-		
-		Stage app = (Stage) ((Node) e.getSource()).getScene().getWindow() ;
-		app.setScene(insertDataScene);
-		app.show();
+	private TableColumn <Transaction, LocalDateTime> date ;
+	
+	@FXML
+	private TableColumn <Transaction, String> category ;
+	
+	@FXML
+	private TableColumn <Transaction, Double> value ;
+	
+	@FXML
+	private TableColumn <Transaction, Void> detail ;
+	
+	@FXML
+	private Label totalIncome ;
+	
+	@FXML
+	private Label totalOutcome ;
+	
+	@FXML
+	private void insertData(ActionEvent event) throws IOException {
+		try {
+			FXMLLoader loader = new FXMLLoader() ;
+			loader.setController(new FXMLInsertDataController());
+	        loader.setLocation(getClass().getResource("insertData.fxml"));
+	        Parent root = loader.load();
+			Scene scene = new Scene(root);
+			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
+			app.setScene(scene);
+			app.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -73,11 +123,91 @@ public class FXMLMainMenuController implements Initializable {
 			filterTransaction() ;
 		});
 		
+//		transactionList = LoadTransaction.readData() ;
 		
 	}
 	
 	public void filterTransaction() {
-		
+		transactionList = LoadTransaction.readData(typeFilter.getValue()) ;
+		createTable() ;
 	}
+	
+	public void createTable() {
+		type.setText("Type");
+		type.setPrefWidth(60.0);
+		type.setCellValueFactory(
+				new PropertyValueFactory<Transaction, String>("type")
+				);
+		
+		date.setText("Date");
+		date.setPrefWidth(122.0);
+		date.setCellValueFactory(
+				new PropertyValueFactory<Transaction, LocalDateTime>("transactionTime") 
+				);
+		
+		category.setText("Category");
+		category.setPrefWidth(108.0);
+		category.setCellValueFactory(
+				new PropertyValueFactory<Transaction, String>("category") 
+				);
+		
+		value.setText("Value");
+		value.setPrefWidth(113.0);
+		value.setCellValueFactory(
+				new PropertyValueFactory<Transaction, Double>("value") 
+				);
+		displayTable.getColumns().clear();
+		displayTable.getItems().clear();
+		displayTable.getItems().addAll(transactionList) ;
+		
+		addButtonToTable() ;
+	}
+	
+	private void addButtonToTable() {
 
+        Callback<TableColumn<Transaction, Void>, TableCell<Transaction, Void>> cellFactory = new Callback<TableColumn<Transaction, Void>, TableCell<Transaction, Void>>() {
+            @Override
+            public TableCell<Transaction, Void> call(final TableColumn<Transaction, Void> param) {
+                final TableCell<Transaction, Void> cell = new TableCell<Transaction, Void>() {
+
+                    private final Button btn = new Button("View");
+
+                    {
+                        btn.setOnAction((ActionEvent e) -> {
+                        	//
+                        	try {
+                        		Parent detailPage = FXMLLoader.load(getClass().getResource("viewDetails.fxml")) ;
+                        		Scene detailScene = new Scene(detailPage) ;
+                        		
+                        		Stage app = (Stage) ((Node) e.getSource()).getScene().getWindow() ;
+                        		app.setScene(detailScene);
+                        		app.show();                        		
+                        	}
+                        	catch (IOException ioException) {
+                        		ioException.printStackTrace();
+                        	}
+                            //
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        
+        detail.setText("Detail");
+        detail.setPrefWidth(147.0);
+        detail.setCellFactory(cellFactory);
+
+    }
+	
 }

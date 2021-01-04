@@ -11,7 +11,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
-    <Tab text="INCOME">
+    <Tab fx:id="incomeTab" text="INCOME">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -30,22 +30,22 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="134.0" layoutY="60.0" prefHeight="35.0" prefWidth="440.0" />
-                  <TextField layoutX="134.0" layoutY="111.0" prefHeight="35.0" prefWidth="440.0" />
-                  <Button layoutX="134.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Save" />
-                  <Button layoutX="328.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Cancel" />
-                  <ChoiceBox layoutX="134.0" layoutY="18.0" prefHeight="25.0" prefWidth="440.0" />
+                  <TextField fx:id="amountIn" layoutX="134.0" layoutY="60.0" prefHeight="35.0" prefWidth="440.0" />
+                  <TextField fx:id="descriptionIn" layoutX="134.0" layoutY="111.0" prefHeight="35.0" prefWidth="440.0" />
+                  <Button fx:id="saveBtnIn" layoutX="134.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Save" />
+                  <Button fx:id="cancelBtnIn" layoutX="328.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Cancel" />
+                  <ChoiceBox fx:id="categoryChoiceIn" layoutX="134.0" layoutY="18.0" prefHeight="25.0" prefWidth="440.0" />
                   <Label layoutX="14.0" layoutY="170.0" prefHeight="25.0" prefWidth="120.0" text="Upload File">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="478.0" layoutY="168.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Add File" />
-                  <TextField layoutX="133.0" layoutY="168.0" prefHeight="30.0" prefWidth="335.0" />
+                  <Button fx:id="addFileBtnIn" layoutX="478.0" layoutY="168.0" mnemonicParsing="false" onAction="#addFileIn" prefHeight="30.0" prefWidth="95.0" text="Add File" />
+                  <TextField fx:id="uploadFileIn" layoutX="133.0" layoutY="168.0" prefHeight="30.0" prefWidth="335.0" />
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="OUTCOME">
+    <Tab fx:id="outcomeTab" text="OUTCOME">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -66,18 +66,18 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="134.0" layoutY="60.0" prefHeight="35.0" prefWidth="440.0" />
-                        <TextField layoutX="134.0" layoutY="111.0" prefHeight="35.0" prefWidth="440.0" />
-                        <Button layoutX="134.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Save" />
-                        <Button layoutX="328.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Cancel" />
-                        <ChoiceBox layoutX="134.0" layoutY="18.0" prefHeight="25.0" prefWidth="440.0" />
+                        <TextField fx:id="amount" layoutX="134.0" layoutY="60.0" prefHeight="35.0" prefWidth="440.0" />
+                        <TextField fx:id="description" layoutX="134.0" layoutY="111.0" prefHeight="35.0" prefWidth="440.0" />
+                        <Button fx:id="saveBtn" layoutX="134.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="170.0" text="Save" />
+                        <Button fx:id="cancelBtn" layoutX="328.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Cancel" />
+                        <ChoiceBox fx:id="categoryChoice" layoutX="134.0" layoutY="18.0" prefHeight="25.0" prefWidth="440.0" />
                         <Label layoutX="14.0" layoutY="170.0" prefHeight="25.0" prefWidth="120.0" text="Upload File">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="478.0" layoutY="168.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" text="Add File" />
-                        <TextField layoutX="132.0" layoutY="168.0" prefHeight="30.0" prefWidth="335.0" />
+                        <Button fx:id="addFileBtn" layoutX="478.0" layoutY="168.0" mnemonicParsing="false" onAction="#addFile" prefHeight="30.0" prefWidth="95.0" text="Add File" />
+                        <TextField fx:id="uploadFile" layoutX="132.0" layoutY="168.0" prefHeight="30.0" prefWidth="335.0" />
                      </children>
                   </AnchorPane>
                </children></AnchorPane>

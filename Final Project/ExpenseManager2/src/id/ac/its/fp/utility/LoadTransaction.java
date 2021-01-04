@@ -49,7 +49,7 @@ public class LoadTransaction {
 		try {
 			while(true) {
 				Transaction transaction = (Transaction) input.readObject() ;
-				if (transaction.getCategory() == category)
+				if (transaction.getCategory() == category || category == null)
 					transactionList.add(transaction) ;
 			}
 		}
@@ -63,7 +63,10 @@ public class LoadTransaction {
 			ioException.printStackTrace();
 			System.err.println("Error reading from file. Terminating.");
 		}
-		return transactionList ;
+		finally {
+			
+			return transactionList ;
+		}
 	}
 	
 	public static void currentDayTransaction() {
