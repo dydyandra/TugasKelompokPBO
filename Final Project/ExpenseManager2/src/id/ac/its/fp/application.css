@@ -2,6 +2,64 @@
 
 #titleLabel
 {
-	-fx-background-color:transparent;
+	
 }
+
+.anchorrpane{
+	-fx-background-color:white;
+}
+
+.button{
+	-fx-background-color:#64a2ad;
+	-fx-text-color:white;
+}
+
+.anchorrpanemid{
+	-fx-background-color:#d3c199;
+}
+
+.anchorrpanebottom{
+	-fx-background-color:#a2d5d8;
+
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-column {
+  -fx-alignment: CENTER;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom, #64a2ad, #a2d5d8);
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+    -fx-scroll-behaviour: smooth;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.tab-pane{
+	-fx-background-color:#a2d5d8;
+}
+
 	

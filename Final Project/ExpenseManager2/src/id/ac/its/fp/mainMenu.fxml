@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
@@ -19,7 +20,7 @@
    <children>
       <SplitPane dividerPositions="0.21084337349397592" layoutY="1.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane fx:id="titlecontainer" minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="598.0">
+          <AnchorPane fx:id="titlecontainer" minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="598.0" styleClass="anchorrpane">
                <children>
                   <Label fx:id="titleLabel" layoutX="54.0" layoutY="36.0" styleClass="titleLabel" stylesheets="@application.css" text="Expense Manager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                      <font>
@@ -28,9 +29,9 @@
                   </Label>
                   <ButtonBar layoutX="-3.0" layoutY="60.0" AnchorPane.leftAnchor="0.0">
                     <buttons>
-                      <Button fx:id="homeButton" mnemonicParsing="false" text="HOME" />
-                        <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertData" text="INSERT" />
-                        <Button fx:id="chartButton" mnemonicParsing="false" text="CHART" />
+                      <Button fx:id="homeButton" mnemonicParsing="false" text="HOME" textFill="WHITE" />
+                        <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertData" text="INSERT" textFill="WHITE" />
+                        <Button fx:id="chartButton" mnemonicParsing="false" text="CHART" textFill="WHITE" />
                     </buttons>
                   </ButtonBar>
                </children>
@@ -39,22 +40,33 @@
                <children>
                   <SplitPane fx:id="mainContainer" dividerPositions="0.8" layoutX="59.0" layoutY="87.0" orientation="VERTICAL" prefHeight="257.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane fx:id="tableAddFilter" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane fx:id="tableAddFilter" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="anchorrpane">
                            <children>
                               <DatePicker fx:id="dateFilter" layoutX="20.0" layoutY="47.0" prefHeight="25.0" prefWidth="200.0" />
                               <ComboBox fx:id="typeFilter" layoutX="232.0" layoutY="47.0" prefWidth="150.0" />
-                              <TableView fx:id="displayTable" layoutX="20.0" layoutY="93.0" prefHeight="200.0" prefWidth="554.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="93.0">
+                              <TableView fx:id="displayTable" layoutX="20.0" layoutY="93.0" prefHeight="200.0" prefWidth="554.0" stylesheets="@application.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="93.0">
                                 <columns>
-                                  <TableColumn fx:id="type" prefWidth="60.0" text="Type" />
-                                  <TableColumn fx:id="date" prefWidth="122.0" text="Date" />
-                                    <TableColumn fx:id="category" prefWidth="108.0" text="Category" />
-                                    <TableColumn fx:id="value" prefWidth="113.0" text="Value" />
-                                    <TableColumn fx:id="detail" prefWidth="147.0" text="Detail" />
+                                  <TableColumn fx:id="type" prefWidth="60.0" style="-fx-background-color: transparent;" text="Type" />
+                                  <TableColumn fx:id="date" prefWidth="122.0" style="-fx-background-color: transparent;" text="Date" />
+                                    <TableColumn fx:id="category" prefWidth="108.0" style="-fx-background-color: transparent;" text="Category" />
+                                    <TableColumn fx:id="value" prefWidth="113.0" style="-fx-background-color: transparent;" text="Value" />
+                                    <TableColumn fx:id="detail" prefWidth="147.0" style="-fx-background-color: transparent;" text="Detail" />
                                 </columns>
+                                 <styleClass>
+                                    <String fx:value="column-header-background" />
+                                    <String fx:value="corner" />
+                                    <String fx:value="track" />
+                                    <String fx:value="track-background" />
+                                    <String fx:value="virtual-flow" />
+                                    <String fx:value="scroll-bar" />
+                                    <String fx:value="filler" />
+                                    <String fx:value="increment-button" />
+                                    <String fx:value="corner" />
+                                 </styleClass>
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane fx:id="dailyDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane fx:id="dailyDisplay" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="anchorrpanebottom">
                            <children>
                               <GridPane layoutX="21.0" layoutY="3.0" prefHeight="71.0" prefWidth="537.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="10.0">
                                 <columnConstraints>
@@ -105,4 +117,8 @@
         </items>
       </SplitPane>
    </children>
+   <styleClass>
+      <String fx:value="an" />
+      <String fx:value="anchorrpanetop" />
+   </styleClass>
 </AnchorPane>
