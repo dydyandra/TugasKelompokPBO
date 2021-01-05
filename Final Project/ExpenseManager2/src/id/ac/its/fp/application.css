@@ -1,9 +1,6 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-#titleLabel
-{
-	
-}
+
 
 .anchorrpane{
 	-fx-background-color:white;
@@ -14,8 +11,15 @@
 	-fx-text-color:white;
 }
 
-.anchorrpanemid{
-	-fx-background-color:#d3c199;
+.buttonDetail{
+	-fx-background-color:#a2d5d8;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
 }
 
 .anchorrpanebottom{
@@ -58,8 +62,21 @@
     -fx-padding: 2;
 }
 
-.tab-pane{
+.tab-header-area .tab-header-background{
+	-fx-background-color:transparent;
+}
+
+.tabPaneOut{
+	-fx-background-color:#64a2ad;
+}
+
+.tabPaneIn{
 	-fx-background-color:#a2d5d8;
+}
+
+.buttonOut{
+	-fx-background-color:#a2d5d8;
+	-fx-text-fill:white;
 }
 
 	
