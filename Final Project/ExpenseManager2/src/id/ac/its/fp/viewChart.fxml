@@ -53,6 +53,15 @@
                               </AnchorPane>
                         </content>
                       </Tab>
+                      <Tab styleClass="tabPaneIn" text="TOTAL">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabPaneIn">
+                                 <children>
+                                    <PieChart prefHeight="331.0" prefWidth="600.0" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
                     </tabs>
                      <styleClass>
                         <String fx:value="tab-header-background" />
