@@ -19,9 +19,6 @@
 	
 }
 
-.buttonDetail{
-	-fx-background-color:#a2d5d8;
-}
 
 .split-pane:horizontal > .split-pane-divider {
    -fx-background-color: transparent;
@@ -88,4 +85,8 @@
 	-fx-text-fill:black;
 }
 
+.chart-pie-label-line {
+    -fx-stroke: white;
+    -fx-fill:white;
+}
 	

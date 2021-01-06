@@ -108,7 +108,6 @@ public class FXMLChartController implements Initializable {
 
 	public List<Double> count(List <Transaction> tr, List <String> choice) {
 		List <Double> value = new ArrayList<>(choice.size()) ;
-		System.out.println(choice.size());
 		for (int i = 0 ; i < choice.size(); i++) {
 			value.add(0.0) ;
 			for (Transaction t : tr) {

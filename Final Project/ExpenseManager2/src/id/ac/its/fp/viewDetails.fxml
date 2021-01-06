@@ -94,12 +94,12 @@
             </ImageView>
             <Pane layoutX="-34.0" layoutY="-86.0" prefHeight="60.0" prefWidth="585.0" style="-fx-background-color: #64a2ad;" AnchorPane.bottomAnchor="840.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="displayDate" layoutX="407.0" layoutY="12.0" text="(Date)" textFill="#fffdfd">
+                  <Label fx:id="displayDate" layoutX="361.0" layoutY="15.0" text="(Date)" textFill="#fffdfd" wrapText="true">
                      <font>
-                        <Font name="Arial Black" size="24.0" />
+                        <Font name="Arial Black" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="backBtn" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#backBtnPressed" styleClass="buttonDetail" text="BACK" textFill="WHITE">
+                  <Button fx:id="backBtn" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#backBtnPressed" styleClass="buttonOut" text="BACK" textFill="#6d6d6d">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
