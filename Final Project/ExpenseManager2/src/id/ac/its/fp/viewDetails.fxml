@@ -99,7 +99,7 @@
                         <Font name="Arial Black" size="24.0" />
                      </font>
                   </Label>
-                  <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" styleClass="buttonDetail" text="BACK" textFill="WHITE">
+                  <Button fx:id="backBtn" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#backBtnPressed" styleClass="buttonDetail" text="BACK" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>

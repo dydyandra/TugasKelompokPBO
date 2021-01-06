@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -229,9 +230,12 @@ public class FXMLMainMenuController implements Initializable {
                         btn.setOnAction((ActionEvent event) -> {
                         	//
                         	try {
+                        		TableRow temp = this.getTableRow() ;
+                        		int idx = temp.getIndex() ;
+                        		System.out.println(idx);
                     			FXMLLoader loader = new FXMLLoader() ;
-                    			loader.setController(new FXMLDetailDataController());
-                    	        loader.setLocation(getClass().getResource("viewData.fxml"));
+                    			loader.setController(new FXMLDetailDataController(transactionList.get(idx)));
+                    	        loader.setLocation(getClass().getResource("viewDetails.fxml"));
                     	        Parent root = loader.load();
                     			Scene scene = new Scene(root);
                     			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
