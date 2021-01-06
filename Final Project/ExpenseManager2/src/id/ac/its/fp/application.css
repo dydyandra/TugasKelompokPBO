@@ -8,7 +8,15 @@
 
 .button{
 	-fx-background-color:#64a2ad;
-	-fx-text-color:white;
+	-fx-text-fill:white;
+}
+
+.buttonX{
+	-fx-background-color: #ececec;
+	-fx-text-fill:#6d6d6d;
+	-fx-border-color:#bbbbbb;
+	-fx-border-radius:5px;
+	
 }
 
 .buttonDetail{
@@ -77,7 +85,7 @@
 
 .buttonOut{
 	-fx-background-color:#a2d5d8;
-	-fx-text-fill:white;
+	-fx-text-fill:black;
 }
 
 	

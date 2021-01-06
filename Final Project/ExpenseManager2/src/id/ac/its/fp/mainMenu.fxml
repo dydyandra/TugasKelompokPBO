@@ -42,7 +42,7 @@
                     <items>
                       <AnchorPane fx:id="tableAddFilter" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="anchorrpane">
                            <children>
-                              <DatePicker fx:id="dateFilter" layoutX="20.0" layoutY="47.0" prefHeight="25.0" prefWidth="200.0" />
+                              <DatePicker fx:id="dateFilter" layoutX="48.0" layoutY="47.0" prefHeight="25.0" prefWidth="172.0" />
                               <ComboBox fx:id="typeFilter" layoutX="232.0" layoutY="47.0" prefWidth="150.0" />
                               <TableView fx:id="displayTable" layoutX="20.0" layoutY="93.0" prefHeight="200.0" prefWidth="554.0" stylesheets="@application.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="93.0">
                                 <columns>
@@ -64,9 +64,9 @@
                                     <String fx:value="corner" />
                                  </styleClass>
                               </TableView>
-                              <Button fx:id="resetCalendar" layoutX="170.0" layoutY="47.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="25.0" style="-fx-border-radius: 0px;" text="X" textFill="WHITE">
+                              <Button fx:id="resetCalendar" layoutX="20.0" layoutY="47.0" mnemonicParsing="false" prefWidth="25.0" styleClass="buttonX" text="X" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="Arial Black" size="10.0" />
                                  </font>
                               </Button>
                            </children>
