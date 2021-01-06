@@ -18,6 +18,7 @@
 .split-pane:horizontal > .split-pane-divider {
    -fx-background-color: transparent;
 }
+
 .split-pane:vertical > .split-pane-divider {
    -fx-background-color: transparent;
 }
