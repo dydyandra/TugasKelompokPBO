@@ -111,12 +111,17 @@ public class SaveTransaction {
 			
 			output.writeObject(newTransaction);
 			
-			File source = new File(src) ;
+			if (!src.equals("")) {
+				File source = new File(src) ;
+				
+				Path imagePath = Paths.get("src/id/ac/its/resources", randomString + ".jpg") ;
+				
+				File dest = new File(imagePath.toAbsolutePath().toString()) ;
+				CopyFile.copyFile(source, dest) ;	
+				
+			}
 			
-			Path imagePath = Paths.get("src/id/ac/its/resources", randomString + ".jpg") ;
 			
-			File dest = new File(imagePath.toAbsolutePath().toString()) ;
-			CopyFile.copyFile(source, dest) ;
 		}
 		catch (NoSuchElementException elementException) {
 			System.err.println("Invalid input. Please try again.");

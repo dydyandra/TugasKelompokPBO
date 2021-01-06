@@ -31,7 +31,7 @@
                     <buttons>
                       <Button fx:id="homeButton" mnemonicParsing="false" text="HOME" textFill="WHITE" />
                         <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertData" text="INSERT" textFill="WHITE" />
-                        <Button fx:id="chartButton" mnemonicParsing="false" text="CHART" textFill="WHITE" />
+                        <Button fx:id="chartButton" mnemonicParsing="false" onAction="#chartBtnPress" text="CHART" textFill="WHITE" />
                     </buttons>
                   </ButtonBar>
                </children>

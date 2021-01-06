@@ -3,6 +3,7 @@ package id.ac.its.fp;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -14,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -89,6 +91,16 @@ public class FXMLMainMenuController implements Initializable {
 	@FXML
 	private Label totalOutcome ;
 	
+//	@FXML // Cek lagi
+//	private void clearDate(MouseEvent e) {
+//		dateFilter.setValue(null) ;
+//	}
+	
+	@FXML
+	private void chartBtnPress(ActionEvent e) {
+		goToChart(e) ;
+	}
+	
 	@FXML
 	private void insertData(ActionEvent event) throws IOException {
 		try {
@@ -111,6 +123,11 @@ public class FXMLMainMenuController implements Initializable {
 		homeButton.setDisable(true) ;
 		
 		typeFilter.getItems().add("Filter") ;
+		typeFilter.getItems().add("Income") ;
+		typeFilter.getItems().add("Salary") ;
+		typeFilter.getItems().add("Bonus") ;
+		typeFilter.getItems().add("Allowance") ;
+		typeFilter.getItems().add("Outcome") ;
 		typeFilter.getItems().add("Food") ;
 		typeFilter.getItems().add("Electronic") ;
 		typeFilter.getItems().add("Transportation") ;
@@ -122,13 +139,48 @@ public class FXMLMainMenuController implements Initializable {
 		typeFilter.setOnAction((ActionEvent e) -> {
 			filterTransaction() ;
 		});
+
+		filterTransaction() ;
 		
-//		transactionList = LoadTransaction.readData() ;
+		List<Double> totalValue = LoadTransaction.readDaily() ;
+		
+		Double income = totalValue.get(0) ;
+		Double outcome = totalValue.get(1) ;
+		
+		totalIncome.setText(income.toString());
+		totalOutcome.setText(outcome.toString());
+		
+		if (income > outcome) {
+			totalIncome.setStyle("-fx-text-fill:green");
+			totalOutcome.setStyle("-fx-text-fill:red");
+		}
+		else if (income < outcome) {
+			totalIncome.setStyle("-fx-text-fill:red");
+			totalOutcome.setStyle("-fx-text-fill:green");			
+		}
+		else {
+			totalIncome.setStyle("-fx-text-fill:green");
+			totalOutcome.setStyle("-fx-text-fill:green");			
+		}
+		
+		dateFilter.setOnAction((ActionEvent e) -> {
+			filterTransaction() ;
+		});
 		
 	}
 	
 	public void filterTransaction() {
-		transactionList = LoadTransaction.readData(typeFilter.getValue()) ;
+		String temp ; 
+		if (dateFilter.getValue() == null)
+			temp = "" ;
+		else {
+			DateTimeFormatter localFormat = DateTimeFormatter.ofPattern("E, dd MMM yyyy");
+			temp = dateFilter.getValue().format(localFormat) ;
+		}
+			
+		transactionList = LoadTransaction.readData(typeFilter.getValue().toString().trim(),
+				temp
+				) ;
 		createTable() ;
 	}
 	
@@ -158,6 +210,7 @@ public class FXMLMainMenuController implements Initializable {
 				);
 		displayTable.getColumns().clear();
 		displayTable.getItems().clear();
+		displayTable.getColumns().addAll(type, date, category, value) ;
 		displayTable.getItems().addAll(transactionList) ;
 		
 		addButtonToTable() ;
@@ -173,19 +226,20 @@ public class FXMLMainMenuController implements Initializable {
                     private final Button btn = new Button("View");
 
                     {
-                        btn.setOnAction((ActionEvent e) -> {
+                        btn.setOnAction((ActionEvent event) -> {
                         	//
                         	try {
-                        		Parent detailPage = FXMLLoader.load(getClass().getResource("viewDetails.fxml")) ;
-                        		Scene detailScene = new Scene(detailPage) ;
-                        		
-                        		Stage app = (Stage) ((Node) e.getSource()).getScene().getWindow() ;
-                        		app.setScene(detailScene);
-                        		app.show();                        		
-                        	}
-                        	catch (IOException ioException) {
-                        		ioException.printStackTrace();
-                        	}
+                    			FXMLLoader loader = new FXMLLoader() ;
+                    			loader.setController(new FXMLDetailDataController());
+                    	        loader.setLocation(getClass().getResource("viewData.fxml"));
+                    	        Parent root = loader.load();
+                    			Scene scene = new Scene(root);
+                    			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
+                    			app.setScene(scene);
+                    			app.show();
+                    		} catch(Exception e) {
+                    			e.printStackTrace();
+                    		}
                             //
                         });
                     }
@@ -207,7 +261,22 @@ public class FXMLMainMenuController implements Initializable {
         detail.setText("Detail");
         detail.setPrefWidth(147.0);
         detail.setCellFactory(cellFactory);
-
+        displayTable.getColumns().add(detail) ;
     }
+	
+	private void goToChart(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader() ;
+			loader.setController(new FXMLChartController());
+	        loader.setLocation(getClass().getResource("viewChart.fxml"));
+	        Parent root = loader.load();
+			Scene scene = new Scene(root);
+			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
+			app.setScene(scene);
+			app.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

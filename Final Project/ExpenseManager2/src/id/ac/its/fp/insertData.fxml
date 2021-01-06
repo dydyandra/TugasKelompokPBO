@@ -24,9 +24,9 @@
                   </Label>
                   <ButtonBar layoutX="-3.0" layoutY="60.0" AnchorPane.leftAnchor="0.0">
                     <buttons>
-                      <Button fx:id="homeBtnId" mnemonicParsing="false" text="HOME" textFill="WHITE" />
+                      	<Button fx:id="homeBtnId" mnemonicParsing="false" onAction="#homeBtnPress" text="HOME" />
                         <Button fx:id="insertBtnId" mnemonicParsing="false" text="INSERT" textFill="WHITE" />
-                        <Button fx:id="chartBtnId" mnemonicParsing="false" text="CHART" textFill="WHITE" />
+                        <Button fx:id="chartBtnId" mnemonicParsing="false" onAction="#chartBtnPress" text="CHART" />
                     </buttons>
                   </ButtonBar>
                </children>

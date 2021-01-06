@@ -18,18 +18,19 @@ public class LoadTransaction {
 	private static double income ;
 	private static double outcome ;
 	
-	public static List<Transaction> readData(String category) {
+	public static List<Transaction> readData(String category, String date) {
 		openFile() ;
-		List<Transaction> temp = showTransaction(category) ;
+		List<Transaction> temp = showTransaction(category, date) ;
 		closeFile() ;
 		
 		return temp ;
 	}
 	
-	public static void readCurrentDay() {
+	public static List<Double> readDaily() {
 		openFile() ;
-		currentDayTransaction() ;
+		List<Double> temp = currentDayTransaction() ;
 		closeFile() ;
+		return temp ;
 	}
 	
 	public static void openFile() {
@@ -44,13 +45,15 @@ public class LoadTransaction {
 		}
 	}
 	
-	public static List<Transaction> showTransaction(String category) {
+	public static List<Transaction> showTransaction(String category, String date) {
 		List<Transaction> transactionList = new ArrayList<>() ;
 		try {
 			while(true) {
 				Transaction transaction = (Transaction) input.readObject() ;
-				if (transaction.getCategory() == category || category == null)
-					transactionList.add(transaction) ;
+				if (transaction.getCategory().equals(category) || category.equals("Filter") || transaction.getType().equals(category)) {
+					if (transaction.getTransactionTime().equals(date) || date.equals(""))
+						transactionList.add(0, transaction) ;
+				}
 			}
 		}
 		catch (EOFException endOfFileException) {
@@ -63,13 +66,12 @@ public class LoadTransaction {
 			ioException.printStackTrace();
 			System.err.println("Error reading from file. Terminating.");
 		}
-		finally {
-			
-			return transactionList ;
-		}
+		
+		return transactionList ;
 	}
 	
-	public static void currentDayTransaction() {
+	public static List<Double> currentDayTransaction() {
+		List<Double> value = new ArrayList<>() ;
 		try {
 			income = 0 ;
 			outcome = 0 ;
@@ -80,9 +82,9 @@ public class LoadTransaction {
 				
 				if (now.toLocalDate().toString().compareTo(
 						transaction.getLocalTime().toLocalDate().toString()) == 0) {
-					if (transaction.getType().compareTo("Income") == 0)
+					if (transaction.getType().equals("Income"))
 						income += transaction.getValue() ;
-					else if (transaction.getType().compareTo("Outcome") == 0)
+					else if (transaction.getType().equals("Outcome"))
 						outcome += transaction.getValue() ;					
 				}
 				
@@ -100,11 +102,9 @@ public class LoadTransaction {
 			ioException.printStackTrace();
 			System.err.println("Error reading from file. Terminating.");
 		}
-		finally {
-			System.out.println("Current Day :");
-			System.out.println("Income : Rp. " + income) ;
-			System.out.println("Outcome : Rp. " + outcome) ;
-		}
+		value.add(income) ;
+		value.add(outcome) ;
+		return value ;
 	}
 	
 	public static void closeFile() {

@@ -76,6 +76,19 @@ public class FXMLInsertDataController implements Initializable {
 	private TextField uploadFileIn ;
 	
 	@FXML
+	private Button insertBtnId ;
+	
+	@FXML
+	private void homeBtnPress(ActionEvent e) {
+		backToMenu(e) ;
+	}
+	
+	@FXML
+	private void chartBtnPress(ActionEvent e) {
+		goToChart(e) ;
+	}
+	
+	@FXML
 	private void addFile(ActionEvent e) throws IOException {
 		FileChooser fc = new FileChooser() ;
 		fc.getExtensionFilters().add(new ExtensionFilter("Picture Files", "*.jpg")) ;
@@ -99,6 +112,8 @@ public class FXMLInsertDataController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		insertBtnId.setDisable(true) ;
 		
 		categoryChoice.getItems().add("Select") ;
 		categoryChoice.getItems().add("Food") ;
@@ -167,6 +182,21 @@ public class FXMLInsertDataController implements Initializable {
 			backToMenu(event) ;
 		});
 		
+	}
+	
+	private void goToChart(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader() ;
+			loader.setController(new FXMLChartController());
+	        loader.setLocation(getClass().getResource("viewChart.fxml"));
+	        Parent root = loader.load();
+			Scene scene = new Scene(root);
+			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
+			app.setScene(scene);
+			app.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void backToMenu(ActionEvent event) {
