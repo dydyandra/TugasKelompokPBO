@@ -232,7 +232,7 @@ public class FXMLMainMenuController implements Initializable {
                         	try {
                         		TableRow temp = this.getTableRow() ;
                         		int idx = temp.getIndex() ;
-                        		System.out.println(idx);
+                        		
                     			FXMLLoader loader = new FXMLLoader() ;
                     			loader.setController(new FXMLDetailDataController(transactionList.get(idx)));
                     	        loader.setLocation(getClass().getResource("viewDetails.fxml"));

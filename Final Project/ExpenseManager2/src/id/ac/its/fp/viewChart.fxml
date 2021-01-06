@@ -24,9 +24,9 @@
                   </Label>
                   <ButtonBar layoutX="-3.0" layoutY="60.0" AnchorPane.leftAnchor="0.0">
                     <buttons>
-                      <Button mnemonicParsing="false" text="HOME" textFill="WHITE" />
-                        <Button mnemonicParsing="false" text="INSERT" textFill="WHITE" />
-                        <Button mnemonicParsing="false" text="CHART" textFill="WHITE" />
+                      <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#homeBtnPressed" text="HOME" textFill="WHITE" />
+                        <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#insertBtnPressed" text="INSERT" textFill="WHITE" />
+                        <Button fx:id="chartBtn" mnemonicParsing="false" text="CHART" textFill="WHITE" />
                     </buttons>
                   </ButtonBar>
                </children>
@@ -39,7 +39,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabPaneIn">
                                  <children>
-                                    <PieChart prefHeight="331.0" prefWidth="600.0" />
+                                    <PieChart fx:id="incomeChart" prefHeight="331.0" prefWidth="600.0" />
                                  </children>
                               </AnchorPane>
                         </content>
@@ -48,7 +48,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="250.0" prefWidth="451.0" styleClass="tabPaneOut">
                                  <children>
-                                    <PieChart prefHeight="331.0" prefWidth="600.0" />
+                                    <PieChart fx:id="outcomeChart" prefHeight="331.0" prefWidth="600.0" />
                                  </children>
                               </AnchorPane>
                         </content>
@@ -57,7 +57,7 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabPaneIn">
                                  <children>
-                                    <PieChart prefHeight="331.0" prefWidth="600.0" />
+                                    <PieChart fx:id="totalChart" prefHeight="331.0" prefWidth="600.0" />
                                  </children>
                               </AnchorPane>
                         </content>
