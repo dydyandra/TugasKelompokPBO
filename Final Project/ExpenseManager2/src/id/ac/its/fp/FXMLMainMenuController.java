@@ -92,10 +92,10 @@ public class FXMLMainMenuController implements Initializable {
 	@FXML
 	private Label totalOutcome ;
 	
-//	@FXML // Cek lagi
-//	private void clearDate(MouseEvent e) {
-//		dateFilter.setValue(null) ;
-//	}
+	@FXML
+	private void resetBtnPressed(ActionEvent e) {
+		dateFilter.setValue(null);
+	}
 	
 	@FXML
 	private void chartBtnPress(ActionEvent e) {
