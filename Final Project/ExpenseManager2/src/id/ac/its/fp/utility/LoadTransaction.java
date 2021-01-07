@@ -50,7 +50,7 @@ public class LoadTransaction {
 		try {
 			while(true) {
 				Transaction transaction = (Transaction) input.readObject() ;
-				if (transaction.getCategory().equals(category) || category.equals("Filter") || transaction.getType().equals(category)) {
+				if (transaction.getCategory().equals(category) || category.equals("All") || transaction.getType().equals(category)) {
 					if (transaction.getTransactionTime().equals(date) || date.equals(""))
 						transactionList.add(0, transaction) ;
 				}
