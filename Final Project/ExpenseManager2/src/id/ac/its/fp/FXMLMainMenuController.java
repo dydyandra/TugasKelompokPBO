@@ -123,7 +123,7 @@ public class FXMLMainMenuController implements Initializable {
 
 		homeButton.setDisable(true) ;
 		
-		typeFilter.getItems().add("Filter") ;
+		typeFilter.getItems().add("All") ;
 		typeFilter.getItems().add("Income") ;
 		typeFilter.getItems().add("Salary") ;
 		typeFilter.getItems().add("Bonus") ;
