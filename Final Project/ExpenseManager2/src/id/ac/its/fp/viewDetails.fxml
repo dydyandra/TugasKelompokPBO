@@ -105,7 +105,7 @@
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonRemove" layoutX="94.0" layoutY="15.0" mnemonicParsing="false" text="DELETE RECORD" textFill="#da3d3d">
+                  <Button fx:id="buttonRemove" layoutX="94.0" layoutY="15.0" mnemonicParsing="false" onAction="#deleteBtnPressed" text="DELETE RECORD" textFill="#da3d3d">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>

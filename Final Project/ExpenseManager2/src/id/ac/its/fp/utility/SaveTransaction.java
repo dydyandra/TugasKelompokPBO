@@ -19,6 +19,25 @@ public class SaveTransaction {
 	private static ObjectInputStream input;
 	private static String oldPath ;
 	private static String newPath ;
+	private static boolean deleteStatus ;
+	private static Transaction targetDeleteTransaction ;
+	
+	public static void deleteData(Transaction targetTransaction) {
+		deleteStatus = true ;
+		targetDeleteTransaction = targetTransaction ;
+		
+		openFile() ;
+		rewriteFile() ;
+		closeFile() ;
+		
+		File deleteFile = new File(newPath) ;
+		deleteFile.delete();
+		File newFile = new File(newPath) ;
+		File oldFile = new File(oldPath) ;
+		oldFile.renameTo(newFile) ;
+		
+		deleteStatus = false ;
+	}
 	
 	public static void insertData(Transaction newTransaction, String src) {
 		openFile() ;
@@ -67,9 +86,14 @@ public class SaveTransaction {
 			while(true) {
 				Transaction transaction = (Transaction) input.readObject() ;
 				
+				if (deleteStatus && transaction.getImagePath().equals(targetDeleteTransaction.getImagePath())) {
+					System.out.println("Check");
+					continue ;
+				}
+				
 				Transaction oldTransaction = new Transaction(transaction.getType(), transaction.getValue(),
 						transaction.getLocalTime(), transaction.getCategory(), transaction.getDescription(), transaction.getImagePath());
-
+				
 				output.writeObject(oldTransaction);
 			}
 		}

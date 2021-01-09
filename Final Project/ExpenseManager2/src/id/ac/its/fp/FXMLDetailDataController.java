@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import id.ac.its.fp.obj.Transaction;
+import id.ac.its.fp.utility.SaveTransaction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
-public class FXMLDetailDataController implements Initializable {
+public class FXMLDetailDataController extends Controller implements Initializable {
 
 	@FXML
 	private Label displayDate ;
@@ -45,19 +46,14 @@ public class FXMLDetailDataController implements Initializable {
 	private Transaction transaction ;
 	
 	@FXML
+	private void deleteBtnPressed(ActionEvent event) {
+		SaveTransaction.deleteData(transaction) ;
+		super.backToMenu(event) ;
+	}
+	
+	@FXML
 	private void backBtnPressed(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader() ;
-			loader.setController(new FXMLMainMenuController());
-	        loader.setLocation(getClass().getResource("mainMenu.fxml"));
-	        Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
-			app.setScene(scene);
-			app.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		super.backToMenu(event) ;
 	}
 	
 	public FXMLDetailDataController(Transaction transaction) {

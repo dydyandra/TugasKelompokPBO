@@ -25,7 +25,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 import static id.ac.its.fp.utility.Messages.*;
 
-public class FXMLInsertDataController implements Initializable {
+public class FXMLInsertDataController extends Controller implements Initializable {
 	
 	@FXML 
 	private Tab incomeTab ;
@@ -80,12 +80,12 @@ public class FXMLInsertDataController implements Initializable {
 	
 	@FXML
 	private void homeBtnPress(ActionEvent e) {
-		backToMenu(e) ;
+		super.backToMenu(e) ;
 	}
 	
 	@FXML
 	private void chartBtnPress(ActionEvent e) {
-		goToChart(e) ;
+		super.goToChart(e) ;
 	}
 	
 	@FXML
@@ -184,34 +184,4 @@ public class FXMLInsertDataController implements Initializable {
 		
 	}
 	
-	private void goToChart(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader() ;
-			loader.setController(new FXMLChartController());
-	        loader.setLocation(getClass().getResource("viewChart.fxml"));
-	        Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
-			app.setScene(scene);
-			app.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void backToMenu(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader() ;
-			loader.setController(new FXMLMainMenuController());
-	        loader.setLocation(getClass().getResource("mainMenu.fxml"));
-	        Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
-			app.setScene(scene);
-			app.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }

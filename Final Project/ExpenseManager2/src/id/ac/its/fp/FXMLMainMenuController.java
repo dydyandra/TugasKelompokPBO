@@ -31,7 +31,7 @@ import javafx.util.Callback;
 import id.ac.its.fp.obj.*;
 import id.ac.its.fp.utility.LoadTransaction;
 
-public class FXMLMainMenuController implements Initializable {
+public class FXMLMainMenuController extends Controller implements Initializable {
 	
 	@FXML
 	private AnchorPane titlecontainer ;
@@ -99,23 +99,12 @@ public class FXMLMainMenuController implements Initializable {
 	
 	@FXML
 	private void chartBtnPress(ActionEvent e) {
-		goToChart(e) ;
+		super.goToChart(e) ;
 	}
 	
 	@FXML
 	private void insertData(ActionEvent event) throws IOException {
-		try {
-			FXMLLoader loader = new FXMLLoader() ;
-			loader.setController(new FXMLInsertDataController());
-	        loader.setLocation(getClass().getResource("insertData.fxml"));
-	        Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
-			app.setScene(scene);
-			app.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		super.goToInsert(event);
 	}
 	
 	@Override
@@ -234,7 +223,8 @@ public class FXMLMainMenuController implements Initializable {
                         		int idx = temp.getIndex() ;
                         		
                     			FXMLLoader loader = new FXMLLoader() ;
-                    			loader.setController(new FXMLDetailDataController(transactionList.get(idx)));
+                    			Controller controller = new FXMLDetailDataController(transactionList.get(idx)) ;
+                    			loader.setController(controller);
                     	        loader.setLocation(getClass().getResource("viewDetails.fxml"));
                     	        Parent root = loader.load();
                     			Scene scene = new Scene(root);
@@ -267,20 +257,5 @@ public class FXMLMainMenuController implements Initializable {
         detail.setCellFactory(cellFactory);
         displayTable.getColumns().add(detail) ;
     }
-	
-	private void goToChart(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader() ;
-			loader.setController(new FXMLChartController());
-	        loader.setLocation(getClass().getResource("viewChart.fxml"));
-	        Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
-			app.setScene(scene);
-			app.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 }

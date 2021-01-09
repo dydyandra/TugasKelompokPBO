@@ -18,7 +18,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class FXMLChartController implements Initializable {
+public class FXMLChartController extends Controller  {
 
 	@FXML
 	private Button chartBtn ;
@@ -34,34 +34,12 @@ public class FXMLChartController implements Initializable {
 	
 	@FXML
 	private void homeBtnPressed(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader() ;
-			loader.setController(new FXMLMainMenuController());
-	        loader.setLocation(getClass().getResource("mainMenu.fxml"));
-	        Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
-			app.setScene(scene);
-			app.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		super.backToMenu(event) ;
 	}
 	
 	@FXML
 	private void insertBtnPressed(ActionEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader() ;
-			loader.setController(new FXMLInsertDataController());
-	        loader.setLocation(getClass().getResource("insertData.fxml"));
-	        Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage app = (Stage) ((Node) event.getSource()).getScene().getWindow() ;
-			app.setScene(scene);
-			app.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		super.goToInsert(event) ;
 	}
 	
 	@Override
