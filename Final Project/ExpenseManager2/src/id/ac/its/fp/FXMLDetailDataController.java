@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import id.ac.its.fp.obj.Transaction;
+import id.ac.its.fp.utility.Messages;
 import id.ac.its.fp.utility.SaveTransaction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,8 +48,10 @@ public class FXMLDetailDataController extends Controller implements Initializabl
 	
 	@FXML
 	private void deleteBtnPressed(ActionEvent event) {
-		SaveTransaction.deleteData(transaction) ;
-		super.backToMenu(event) ;
+		if (Messages.showConfirm("Are you sure?", "Delete Record Confirmation")) {
+			SaveTransaction.deleteData(transaction) ;
+			super.backToMenu(event) ;			
+		}
 	}
 	
 	@FXML

@@ -87,7 +87,6 @@ public class SaveTransaction {
 				Transaction transaction = (Transaction) input.readObject() ;
 				
 				if (deleteStatus && transaction.getImagePath().equals(targetDeleteTransaction.getImagePath())) {
-					System.out.println("Check");
 					continue ;
 				}
 				
@@ -123,13 +122,6 @@ public class SaveTransaction {
 		try {
 			String randomString = RandomString.getAlphaNumericString(10) ;
 			String path = "resources/" + randomString + ".jpg" ;
-			
-//			String type = input.next() ;
-//			double value = input.nextDouble() ;
-//			String category = input.next() ;
-//			String description = input.next() ;
-//			Transaction transaction = new Transaction(type, value,
-//					LocalDateTime.now(), category, description, path);
 			
 			newTransaction.setImagePath(path);
 			

@@ -19,7 +19,7 @@ public class Messages {
 	
 	public static boolean showConfirm(String msg, String head) {
 		Alert alert = new Alert( AlertType.INFORMATION );
-        alert.setTitle( "Confirmation Dialog" );
+        alert.setTitle( "Confirm" );
         alert.setHeaderText( head );
         alert.setContentText( msg );
         alert.getButtonTypes().setAll( ButtonType.OK, ButtonType.CANCEL );
