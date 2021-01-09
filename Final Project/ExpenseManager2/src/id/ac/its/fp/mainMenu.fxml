@@ -100,8 +100,11 @@
                                     </Label>
                                     <Label fx:id="totalIncome" prefHeight="18.0" prefWidth="184.0" text="income" GridPane.rowIndex="1">
                                        <GridPane.margin>
-                                          <Insets left="70.0" />
+                                          <Insets />
                                        </GridPane.margin>
+                                       <padding>
+                                          <Insets left="60.0" />
+                                       </padding>
                                     </Label>
                                     <Label fx:id="totalOutcome" prefHeight="18.0" prefWidth="184.0" text="outcome" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <opaqueInsets>
