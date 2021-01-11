@@ -87,6 +87,7 @@ public class SaveTransaction {
 				Transaction transaction = (Transaction) input.readObject() ;
 				
 				if (deleteStatus && transaction.getImagePath().equals(targetDeleteTransaction.getImagePath())) {
+					
 					continue ;
 				}
 				
